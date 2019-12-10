@@ -12,3 +12,9 @@ body,
 footer {
     margin-top: auto;
 }
+
+html,
+body,
+main {
+    height: 100%;
+}
