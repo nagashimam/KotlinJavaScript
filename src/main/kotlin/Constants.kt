@@ -1,0 +1,7 @@
+const val PROMPT_INPUT = "カードを引きますか?\n0:現在の点数を見る 1:現在の手札を見る 2:引く 3:もう引かない"
+const val COULD_NOT_READ = "すみません、入力が読み取れませんでした"
+const val DO_NOT_KNOW = "分かりません"
+const val CURRENT_SCORE = "現在の点数:"
+const val CURRENT_CARDS = "現在の手札:"
+const val YOU_WIN = "あなたの勝ちです"
+const val YOU_LOSE = "あなたの負けです"
