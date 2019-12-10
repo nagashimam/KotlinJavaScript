@@ -20,14 +20,15 @@ class Deck {
 }
 
 class Card(private val suit: Suit, val number: Number){
+    val src = "img/${suit.suitName}/${number.num}.png"
     override fun toString() = "${suit.suitName}の${number.num}"
 }
 
 enum class Suit(val suitName: String) {
-    SPADE("スペード"),
-    CLUB("クラブ"),
-    DIAMOND("ダイヤモンド"),
-    HEART("ハート");
+    SPADE("spade"),
+    CLUB("club"),
+    DIAMOND("diamond"),
+    HEART("heart");
 }
 
 enum class Number(val num: Int) {
