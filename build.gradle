@@ -21,8 +21,8 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-    implementation 'kotlin.js.externals:kotlin-js-jquery:2.0.0-0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-html-js:0.6.2'
+    compile 'kotlin.js.externals:kotlin-js-jquery:2.0.0-0'
+    compile 'org.jetbrains.kotlinx:kotlinx-html-js:0.6.2'
 }
 
 task assembleWeb(type: Sync) {
@@ -37,12 +37,9 @@ task assembleWeb(type: Sync) {
         })
     }
 
-    String copiedTo = "${projectDir}/web"
     from compileKotlin2Js.destinationDir
-    into copiedTo
+    into "${projectDir}/web"
 
-    from "${projectDir}/jquery-3.4.1.js"
-    into copiedTo
     dependsOn classes
 }
 
