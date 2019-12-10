@@ -9,12 +9,12 @@ class View : Contract.View {
     override fun printMessage(msg: String) = println(msg)
 
     override fun promptInput() {
-        println(PROMPT_INPUT)
-        readLine()
-            ?.let { presenter.processHumanChoice(it) }
-            ?: let {
-                println(COULD_NOT_READ)
-                promptInput()
-            }
+//        println(PROMPT_INPUT)
+//        readLine()
+//            ?.let { presenter.processHumanChoice(it) }
+//            ?: let {
+//                println(COULD_NOT_READ)
+//                promptInput()
+//            }
     }
 }
