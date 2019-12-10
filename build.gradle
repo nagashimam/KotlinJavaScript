@@ -36,9 +36,13 @@ task assembleWeb(type: Sync) {
             }
         })
     }
-    from compileKotlin2Js.destinationDir
-    into "${projectDir}/web"
 
+    String copiedTo = "${projectDir}/web"
+    from compileKotlin2Js.destinationDir
+    into copiedTo
+
+    from "${projectDir}/jquery-3.4.1.js"
+    into copiedTo
     dependsOn classes
 }
 
