@@ -19,7 +19,7 @@ var KotlinJavaScript = function (_, Kotlin, $module$kotlinx_coroutines_core) {
   var Unit = Kotlin.kotlin.Unit;
   var Pair = Kotlin.kotlin.Pair;
   var coroutines = $module$kotlinx_coroutines_core.kotlinx.coroutines;
-  var L2000 = Kotlin.Long.fromInt(2000);
+  var L1000 = Kotlin.Long.fromInt(1000);
   var delay = $module$kotlinx_coroutines_core.kotlinx.coroutines.delay_s8cxhz$;
   var COROUTINE_SUSPENDED = Kotlin.kotlin.coroutines.intrinsics.COROUTINE_SUSPENDED;
   var CoroutineImpl = Kotlin.kotlin.coroutines.CoroutineImpl;
@@ -400,7 +400,7 @@ var KotlinJavaScript = function (_, Kotlin, $module$kotlinx_coroutines_core) {
         switch (this.state_0) {
           case 0:
             this.state_0 = 2;
-            this.result_0 = delay(L2000, this);
+            this.result_0 = delay(L1000, this);
             if (this.result_0 === COROUTINE_SUSPENDED)
               return COROUTINE_SUSPENDED;
             continue;
