@@ -4,7 +4,7 @@ import kotlin.browser.window
 
 private const val cpu_hand = "#cpu-hand"
 private const val human_hand = "#human-hand"
-private const val face_down = "src/main/resources/img/face_down.png"
+private const val face_down = "src/main/resources/img/face_down.png.webp"
 private const val draw = "#more"
 private const val stop = "#stop"
 private const val score = "#score"

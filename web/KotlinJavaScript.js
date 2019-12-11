@@ -19,7 +19,7 @@ var KotlinJavaScript = function (_, Kotlin, $module$kotlinx_coroutines_core) {
   var Unit = Kotlin.kotlin.Unit;
   var Pair = Kotlin.kotlin.Pair;
   var coroutines = $module$kotlinx_coroutines_core.kotlinx.coroutines;
-  var L200 = Kotlin.Long.fromInt(200);
+  var L2000 = Kotlin.Long.fromInt(2000);
   var delay = $module$kotlinx_coroutines_core.kotlinx.coroutines.delay_s8cxhz$;
   var COROUTINE_SUSPENDED = Kotlin.kotlin.coroutines.intrinsics.COROUTINE_SUSPENDED;
   var CoroutineImpl = Kotlin.kotlin.coroutines.CoroutineImpl;
@@ -125,7 +125,7 @@ var KotlinJavaScript = function (_, Kotlin, $module$kotlinx_coroutines_core) {
   function Card(suit, number) {
     this.suit_0 = suit;
     this.number = number;
-    this.src = 'src/main/resources/img/' + this.suit_0.suitName + '/' + this.number.num + '.png';
+    this.src = 'src/main/resources/img/' + this.suit_0.suitName + '/' + this.number.num + '.png.webp';
   }
   Card.prototype.toString = function () {
     return this.suit_0.suitName + '\u306E' + this.number.num;
@@ -400,7 +400,7 @@ var KotlinJavaScript = function (_, Kotlin, $module$kotlinx_coroutines_core) {
         switch (this.state_0) {
           case 0:
             this.state_0 = 2;
-            this.result_0 = delay(L200, this);
+            this.result_0 = delay(L2000, this);
             if (this.result_0 === COROUTINE_SUSPENDED)
               return COROUTINE_SUSPENDED;
             continue;
@@ -813,7 +813,7 @@ var KotlinJavaScript = function (_, Kotlin, $module$kotlinx_coroutines_core) {
   YOU_LOSE = '\u3042\u306A\u305F\u306E\u8CA0\u3051\u3067\u3059';
   cpu_hand = '#cpu-hand';
   human_hand = '#human-hand';
-  face_down = 'src/main/resources/img/face_down.png';
+  face_down = 'src/main/resources/img/face_down.png.webp';
   draw = '#more';
   stop = '#stop';
   score = '#score';
