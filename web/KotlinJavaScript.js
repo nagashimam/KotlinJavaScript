@@ -24,6 +24,7 @@ var KotlinJavaScript = function (_, Kotlin, $module$kotlinx_coroutines_core) {
   var COROUTINE_SUSPENDED = Kotlin.kotlin.coroutines.intrinsics.COROUTINE_SUSPENDED;
   var CoroutineImpl = Kotlin.kotlin.coroutines.CoroutineImpl;
   var launch = $module$kotlinx_coroutines_core.kotlinx.coroutines.launch_s496o7$;
+  var print = Kotlin.kotlin.io.print_s8jyv4$;
   Suit.prototype = Object.create(Enum.prototype);
   Suit.prototype.constructor = Suit;
   Number_0.prototype = Object.create(Enum.prototype);
@@ -125,7 +126,7 @@ var KotlinJavaScript = function (_, Kotlin, $module$kotlinx_coroutines_core) {
   function Card(suit, number) {
     this.suit_0 = suit;
     this.number = number;
-    this.src = 'img/' + this.suit_0.suitName + '/' + this.number.num + '.png';
+    this.src = 'src/main/resources/img/' + this.suit_0.suitName + '/' + this.number.num + '.png';
   }
   Card.prototype.toString = function () {
     return this.suit_0.suitName + '\u306E' + this.number.num;
@@ -654,7 +655,7 @@ var KotlinJavaScript = function (_, Kotlin, $module$kotlinx_coroutines_core) {
     window.alert(msg);
   };
   View.prototype.flipCard_4un41x$ = function (cards) {
-    jQuery('#cpu-hand').html('<div><\/div>');
+    jQuery(cpu_hand).html('<div><\/div>');
     var tmp$;
     tmp$ = cards.iterator();
     while (tmp$.hasNext()) {
@@ -684,6 +685,7 @@ var KotlinJavaScript = function (_, Kotlin, $module$kotlinx_coroutines_core) {
       src = null;
     var tmp$, tmp$_0;
     jQuery(selector).append('<img class=' + '"' + 'col-1 pl-1 pr-1' + '"' + ' src=' + '"' + ((tmp$_0 = (tmp$ = card != null ? card.src : null) != null ? tmp$ : src) != null ? tmp$_0 : '') + '"' + ' alt=' + '"' + '"' + '>');
+    print(card != null ? card.src : null);
   };
   function View_init$lambda(this$View) {
     return function (f, f_0) {
