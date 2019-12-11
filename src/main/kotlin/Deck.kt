@@ -20,7 +20,7 @@ class Deck {
 }
 
 class Card(private val suit: Suit, val number: Number){
-    val src = "img/${suit.suitName}/${number.num}.png"
+    val src = "src/main/resources/img/${suit.suitName}/${number.num}.png"
     override fun toString() = "${suit.suitName}の${number.num}"
 }
 
