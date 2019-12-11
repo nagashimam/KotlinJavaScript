@@ -1,4 +1,4 @@
-
+import kotlinx.coroutines.*
 
 class Interactor(private val presenter: Contract.InteractorOutput) : Contract.Interactor {
     private val human = Human()
@@ -58,7 +58,10 @@ class Interactor(private val presenter: Contract.InteractorOutput) : Contract.In
             YOU_LOSE
         }
 
-        presenter.showMessage("$humScoreMsg\n$comScoreMsg\n$resultMsg")
-        presenter.finish()
+        GlobalScope.launch {
+            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
+            presenter.showMessage("$humScoreMsg\n$comScoreMsg\n$resultMsg")
+            presenter.finish()
+        }
     }
 }
