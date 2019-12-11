@@ -1,3 +1,5 @@
+
+
 class Interactor(private val presenter: Contract.InteractorOutput) : Contract.Interactor {
     private val human = Human()
     private val computer = Computer()
@@ -8,25 +10,12 @@ class Interactor(private val presenter: Contract.InteractorOutput) : Contract.In
         addAndShow(deck.draw(), human)
         addAndShow(deck.draw(), computer)
         computer.addToHands(deck.draw())
-        showDrawnCard(computer, DO_NOT_KNOW)
-        presenter.promptInput()
-    }
-
-    override fun showCurrentScoreOfHuman() {
-        presenter.printMessage(CURRENT_SCORE + human.calculateCurrentScore())
-        presenter.promptInput()
-    }
-
-    override fun showCurrentHandsOfHuman() {
-        presenter.printMessage(CURRENT_CARDS).let {
-            human.hands.forEach { presenter.printMessage(it.toString()) }
-        }
-        presenter.promptInput()
+        presenter.placeCardFaceDown()
     }
 
     override fun drawCardsForComputer() {
         computer.hands[1].let { secondCard ->
-            showDrawnCard(computer, secondCard.toString())
+            presenter.refreshView(secondCard, computer)
             drawCardsForComputerRecursively(deck.draw())
         }
     }
@@ -35,25 +24,13 @@ class Interactor(private val presenter: Contract.InteractorOutput) : Contract.In
         deck.draw().let { card ->
             addAndShow(card, human)
             if (human.isOver()) {
-                presenter.printMessage(CURRENT_SCORE + human.calculateCurrentScore())
-                presenter.printMessage(YOU_LOSE)
-            } else {
-                presenter.promptInput()
+                presenter.showMessage("${CURRENT_SCORE + human.calculateCurrentScore()}\n$YOU_LOSE")
             }
         }
 
-    private fun showDrawnCard(player: Player, s: String) =
-        presenter.printMessage("${player.whichPlayer()}が${player.hands.size}枚目に引いた手は$s")
-
     private fun addAndShow(card: Card, player: Player) {
         player.addToHands(card)
-        showDrawnCard(player, card.toString())
-    }
-
-    private fun showFinalScore() {
-        val msg: (Player) -> String = { player -> "${player.whichPlayer()}の点数:${player.calculateCurrentScore()}" }
-        presenter.printMessage(msg(human))
-        presenter.printMessage(msg(computer))
+        presenter.refreshView(card, player)
     }
 
     private tailrec fun drawCardsForComputerRecursively(card: Card) {
@@ -66,13 +43,22 @@ class Interactor(private val presenter: Contract.InteractorOutput) : Contract.In
     }
 
     private fun judge() {
-        showFinalScore()
-        val (humScore, comScore) = human.calculateCurrentScore() to computer.calculateCurrentScore()
-        val isHumanWin = comScore > 21 || humScore > comScore
-        if (isHumanWin) {
-            presenter.printMessage(YOU_WIN)
-        } else {
-            presenter.printMessage(YOU_LOSE)
+        val msgAndScore: (Player) -> Pair<String, Int> = { player ->
+            val currentScore = player.calculateCurrentScore()
+            Pair("${player.whichPlayer()}の点数:${currentScore}", currentScore)
         }
+
+        val (humScoreMsg, humScore) = msgAndScore(human)
+        val (comScoreMsg, comScore) = msgAndScore(computer)
+
+        val isHumanWin = comScore > 21 || humScore > comScore
+        val resultMsg = if (isHumanWin) {
+            YOU_WIN
+        } else {
+            YOU_LOSE
+        }
+
+        presenter.showMessage("$humScoreMsg\n$comScoreMsg\n$resultMsg")
+        presenter.finish()
     }
 }

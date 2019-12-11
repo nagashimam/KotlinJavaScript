@@ -1,24 +1,30 @@
 interface Contract {
     interface View {
-        fun printMessage(msg: String)
-        fun promptInput()
+        fun showMessage(msg: String)
+        fun flipCard(card: Card)
+        fun placeCpuCard(card: Card)
+        fun placeCardFaceDown()
+        fun placeHumanCard(card: Card)
+        fun updateHumanScore(humanScore : Int)
+        fun reload()
     }
 
     interface Presenter {
-        fun processHumanChoice(choice: String)
+        fun draw()
+        fun stopDrawing()
         fun start()
     }
 
     interface Interactor {
-        fun showCurrentScoreOfHuman()
-        fun showCurrentHandsOfHuman()
         fun drawCardForHuman()
         fun drawCardsForComputer()
         fun initialSetting()
     }
 
     interface InteractorOutput {
-        fun printMessage(msg :String)
-        fun promptInput()
+        fun showMessage(msg :String)
+        fun placeCardFaceDown()
+        fun refreshView(card: Card, player: Player)
+        fun finish()
     }
 }
