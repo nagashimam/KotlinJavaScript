@@ -3,7 +3,13 @@ abstract class Player {
     private val isAce: (Card) -> Boolean = { card -> card.number == Number.ONE }
 
     private val countAceAsOne: () -> Int = { hands.aces().size }
-    private val countAceAsEleven: () -> Int = { hands.aces().size + 10 }
+    private val countAceAsEleven: () -> Int = {
+        if (hands.aces().isEmpty()) {
+            0
+        } else {
+            hands.aces().size + 10
+        }
+    }
 
     private fun List<Card>.aces() = filter(isAce)
     private fun List<Card>.nonAceCards() = filterNot(isAce)

@@ -14,17 +14,15 @@ class Interactor(private val presenter: Contract.InteractorOutput) : Contract.In
     }
 
     override fun drawCardsForComputer() {
-        computer.hands[1].let { secondCard ->
-            presenter.refreshView(secondCard, computer)
-            drawCardsForComputerRecursively(deck.draw())
-        }
+        presenter.flipCard(listOf(computer.hands[0], computer.hands[1]))
+        drawCardsForComputerRecursively(deck.draw())
     }
 
     override fun drawCardForHuman() =
         deck.draw().let { card ->
             addAndShow(card, human)
             if (human.isOver()) {
-                presenter.showMessage("${CURRENT_SCORE + human.calculateCurrentScore()}\n$YOU_LOSE")
+                showResult("${CURRENT_SCORE + human.calculateCurrentScore()}\n$YOU_LOSE")
             }
         }
 
@@ -58,9 +56,13 @@ class Interactor(private val presenter: Contract.InteractorOutput) : Contract.In
             YOU_LOSE
         }
 
+        showResult("$humScoreMsg\n$comScoreMsg\n$resultMsg")
+    }
+
+    private fun showResult(msg: String) {
         GlobalScope.launch {
-            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
-            presenter.showMessage("$humScoreMsg\n$comScoreMsg\n$resultMsg")
+            delay(200L)
+            presenter.showMessage(msg)
             presenter.finish()
         }
     }

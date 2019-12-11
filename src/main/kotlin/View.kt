@@ -25,9 +25,9 @@ class View : Contract.View {
 
     override fun showMessage(msg: String) = window.alert(msg)
 
-    override fun flipCard(card: Card) {
-        jQuery("$cpu_hand:last").remove()
-        placeCard(cpu_hand, card)
+    override fun flipCard(cards: List<Card>) {
+        jQuery(cpu_hand).html("<div></div>")
+        cards.forEach { card -> placeCard(cpu_hand, card) }
     }
 
     override fun placeCpuCard(card: Card) = placeCard(cpu_hand, card)

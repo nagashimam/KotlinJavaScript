@@ -18,6 +18,8 @@ class Presenter(private val view: Contract.View) : Contract.Presenter, Contract.
         }
     }
 
+    override fun flipCard(cards: List<Card>) = view.flipCard(cards)
+
     override fun finish() = view.reload()
 
     override fun draw() = interactor.drawCardForHuman()
