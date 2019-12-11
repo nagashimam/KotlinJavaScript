@@ -61,7 +61,7 @@ class Interactor(private val presenter: Contract.InteractorOutput) : Contract.In
 
     private fun showResult(msg: String) {
         GlobalScope.launch {
-            delay(1000L)
+            delay(200L)
             presenter.showMessage(msg)
             presenter.finish()
         }
